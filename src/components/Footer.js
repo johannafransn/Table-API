@@ -9,15 +9,15 @@ const Footer = () => {
   return (
     <footer>
       <div className="container">
-        <div class="link-boxes">
-          <ul class="box">
-            <li class="link_name">Table API</li>
+        <div className="link-boxes">
+          <ul className="box">
+            <li className="link_name">Table API</li>
             <li>
               <img width="20%" src="" />
             </li>
           </ul>
-          <ul class="box">
-            <li class="link_name">Project</li>
+          <ul className="box">
+            <li className="link_name">Project</li>
             <li>
               {" "}
               <a href="" target="_blank">
@@ -25,16 +25,16 @@ const Footer = () => {
               </a>
             </li>
           </ul>
-          <ul class="box">
-            <li class="link_name">Support</li>
+          <ul className="box">
+            <li className="link_name">Support</li>
             <li>
               <a href="" target="_blank">
                 FAQ
               </a>
             </li>
           </ul>
-          <ul class="box">
-            <li class="link_name">Social</li>
+          <ul className="box">
+            <li className="link_name">Social</li>
             <li>
               <a target="_blank" href="">
                 Github
