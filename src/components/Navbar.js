@@ -1,6 +1,4 @@
 import { NavLink } from "react-router-dom";
-import { faGift } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Navbar = () => {
   return (
@@ -9,9 +7,9 @@ const Navbar = () => {
         <a class="navbar-brand" href="/#">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="30"
-            height="30"
-            fill="currentColor"
+            width="44"
+            height="44"
+            fill="#a06ffb"
             class="bi bi-arrow-repeat"
             viewBox="0 0 16 16"
           >
@@ -35,15 +33,19 @@ const Navbar = () => {
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <NavLink className="nav-link" to="/">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-1">
+            <li class="nav-item xx-large">
+              <NavLink className="nav-link xx-large" to="/">
                 Home
               </NavLink>
               {""}
             </li>
             <li class="nav-item">
-              <NavLink className="nav-link" to="/about">
+              <NavLink
+                className="nav-link large
+"
+                to="/about"
+              >
                 About
               </NavLink>
               {""}

@@ -1,4 +1,4 @@
-const About = () => {
+export default function About({ propsHere }) {
   return (
     <div class="container py-5">
       <div class="row">
@@ -48,6 +48,4 @@ const About = () => {
       </div>
     </div>
   );
-};
-
-export default About;
+}

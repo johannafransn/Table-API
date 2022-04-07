@@ -1,6 +1,6 @@
 import Table from "../components/Table";
 
-const Home = () => {
+export default function Home({ propsHere }) {
   return (
     <div class="container">
       <div class="row my-3 my-sm-5">
@@ -50,6 +50,4 @@ const Home = () => {
       </div>
     </div>
   );
-};
-
-export default Home;
+}
