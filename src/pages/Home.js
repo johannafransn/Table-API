@@ -5,7 +5,8 @@ const Home = () => {
       <div class="row">
         <div class="col-5">
           <h1><br></br>
-            <b>Welcome!</b>
+            <b>Welcome!</b>'
+            <button className="btn btn-primary">Hejhej</button>
           </h1>
         </div>
         <div class="col-6">
