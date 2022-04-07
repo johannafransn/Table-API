@@ -21,8 +21,8 @@ const About = () => {
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
+                    width="17"
+                    height="17"
                     fill="currentColor"
                     class="bi bi-github"
                     viewBox="0 0 16 16"
