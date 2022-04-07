@@ -1,6 +1,6 @@
 {
-  "short_name": "Weth",
-  "name": " eth",
+  "short_name": "TableAPI",
+  "name": "tableAPI",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#ffff",
   "background_color": "#ffffff"
 }

@@ -11,16 +11,14 @@ function App() {
   const [userAccountAddress, setUserAccountAddress] = useState("");
 
   return (
-    <div>
+    <main>
+      {" "}
       <Navbar />
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
       </Routes>
-
-      <Footer />
-    </div>
+    </main>
   );
 }
 

@@ -1,11 +1,16 @@
+$green-dark:   #a06ffb;
+$green-light:   #cfe383;
 
-$primary: #f00;
-$secondary: #0f0;
-$dark: #300;
-$light: #fdd;
-$success: #0fa;
-$info: #555;
-$warning: #ff0;
-$danger: #f00;
+
+$theme-colors: (
+  "primary": #a06ffb,
+  "danger": #aa0b02
+);
+
+$primary:       $green-dark;
+$btn-color: "white";
+$accordion-icon-width:                    1.875rem;
+$accordion-icon-color:                    $green-dark;
+$accordion-icon-active-color:             $green-light;
 
 @import '~bootstrap/scss/bootstrap.scss';
