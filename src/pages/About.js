@@ -14,7 +14,7 @@ export default function About({ propsHere }) {
               </p>
               <p>
                 <a
-                  class="btn btn-primary"
+                  className="btn btn-primary "
                   target="_blank"
                   href="https://github.com/johannafransn/Table-API"
                   rel="noopener noreferrer"
