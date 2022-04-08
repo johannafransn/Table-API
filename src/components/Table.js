@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
+import Pagination from "./Pagination";
 
 export default function Table({ interval, searchText }) {
   const [apiData, setApiData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
   const [graphData, setGraphData] = useState([]);
   const [count, setCount] = useState(0);
 
@@ -39,13 +43,26 @@ export default function Table({ interval, searchText }) {
     return filteredData;
   };
 
+  const onChangePage = (page) => {
+    // update state with new page of items
+    setCurrentPage(page);
+  };
+
   //TODO: Add  pagination
   const _renderRows = () => {
     let filteredData = _searchObjectWithText(apiData);
+    const indexOfLastPost = currentPage * rowsPerPage;
+    const indexOfFirstPost = indexOfLastPost - rowsPerPage;
+    const currentItems = filteredData.slice(indexOfFirstPost, indexOfLastPost);
+    console.log(
+      currentItems,
+      "<-- currentitems , --> currentpage",
+      currentPage
+    );
 
     let rows = [];
     if (filteredData && filteredData.length > 0) {
-      rows = filteredData.map((item, index) => {
+      rows = currentItems.map((item, index) => {
         return (
           <tr key={index}>
             <td style={{ textAlign: "left" }}>{index}</td>
@@ -66,20 +83,42 @@ export default function Table({ interval, searchText }) {
 
     return rows;
   };
+
+  const _renderTablePage = () => {
+    const indexOfLastPost = currentPage * rowsPerPage;
+    const indexOfFirstPost = indexOfLastPost - rowsPerPage;
+    const currentItems = apiData.slice(indexOfFirstPost, indexOfLastPost);
+  };
   console.log("wat is data??", interval);
 
   return (
-    <table class="table">
-      <thead>
-        <tr>
-          <th style={{ textAlign: "left" }}>Number</th>
-          <th>From</th>
-          <th style={{ textAlign: "right" }}>To</th>
-          <th style={{ textAlign: "right" }}>Updated</th>
-          <th style={{ textAlign: "right" }}>Rate</th>
-        </tr>
-      </thead>
-      <tbody>{_renderRows()}</tbody>
-    </table>
+    <div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th style={{ textAlign: "left" }}>Number</th>
+            <th>From</th>
+            <th style={{ textAlign: "right" }}>To</th>
+            <th style={{ textAlign: "right" }}>Updated</th>
+            <th style={{ textAlign: "right" }}>Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          {_renderTablePage()}
+          {_renderRows()}
+        </tbody>
+      </table>
+      <Pagination
+        itemsPerPage={rowsPerPage}
+        totalItems={apiData.length}
+        currentPage={currentPage}
+        paginate={onChangePage}
+        stylePosition={{
+          position: "relative",
+          top: 20,
+          float: "right",
+        }}
+      />
+    </div>
   );
 }
