@@ -5,18 +5,24 @@ import Table from "../components/Table";
 export default function Home({ propsHere }) {
   const [interval, setInterval] = useState(10);
   const [radioBtnSelected, setRadioBtnSelected] = useState("10");
+  const [searchText, setSearchText] = useState("");
 
   const _handleCheckboxChange = (event) => {
     setRadioBtnSelected(event.target.value);
     setInterval(Number(event.target.value));
   };
 
+  const _handleSearchText = (event) => {
+    setSearchText(event.target.value);
+  };
+  console.log(searchText, "USER SEARCH");
   return (
     <div class="container">
       <div class="row my-3 my-sm-5">
         <SidePanel
           _handleCheckboxChange={_handleCheckboxChange}
           radioBtnSelected={radioBtnSelected}
+          _handleSearchText={_handleSearchText}
         ></SidePanel>
         <div class="col-sm-9 article-content">
           <h1>Table API</h1>
@@ -30,7 +36,8 @@ export default function Home({ propsHere }) {
               If you want to learn more about this application see:{" "}
               <a href="/about">About</a>
             </p>
-            <Table interval={interval}></Table>
+
+            <Table interval={interval} searchText={searchText}></Table>
           </div>
         </div>
       </div>

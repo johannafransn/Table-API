@@ -1,18 +1,29 @@
 import { useState } from "react";
 import "../index.scss";
 
-export default function SidePanel({ _handleCheckboxChange, radioBtnSelected }) {
-  /*   const [interval, setInterval] = useState();
-  const [radioBtnSelected, setRadioBtnSelected] = useState("5");
-
-  const _handleCheckboxChange = (event) => {
-    setRadioBtnSelected(event.target.value);
-    setInterval(Number(event.target.value));
-  }; */
-
+export default function SidePanel({
+  _handleCheckboxChange,
+  radioBtnSelected,
+  _handleSearchText,
+}) {
   const isRadioSelected = (radioValue) => {
     if (radioBtnSelected === radioValue) return true;
     else return false;
+  };
+
+  const _renderSearchInput = () => {
+    return (
+      <div className="">
+        <div className="col-md-6 input-group">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search..."
+            onChange={_handleSearchText}
+          />
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -56,7 +67,9 @@ export default function SidePanel({ _handleCheckboxChange, radioBtnSelected }) {
             Every 15 seconds
           </label>
         </div>
+
         <p>You have chosen: {radioBtnSelected}</p>
+        {_renderSearchInput()}
       </ul>
     </div>
   );

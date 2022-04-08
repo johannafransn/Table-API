@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function Table({ interval }) {
+export default function Table({ interval, searchText }) {
   const [apiData, setApiData] = useState([]);
   const [graphData, setGraphData] = useState([]);
   const [count, setCount] = useState(0);
@@ -20,11 +20,32 @@ export default function Table({ interval }) {
     fetchGCD();
   }, [count]);
 
-  //TODO: Add search and pagination
+  //This function filters the object based on user input text
+  const _searchObjectWithText = (obj) => {
+    let lowercasedFilter = searchText.toLowerCase();
+    if (obj) {
+      var filteredData = obj.filter((item) => {
+        let result = Object.keys(item).some((key) => {
+          if (item[key]) {
+            return item[key]
+              .toString()
+              .toLowerCase()
+              .includes(lowercasedFilter);
+          }
+        });
+        return result;
+      });
+    }
+    return filteredData;
+  };
+
+  //TODO: Add  pagination
   const _renderRows = () => {
+    let filteredData = _searchObjectWithText(apiData);
+
     let rows = [];
-    if (apiData.length > 0) {
-      rows = apiData.map((item, index) => {
+    if (filteredData && filteredData.length > 0) {
+      rows = filteredData.map((item, index) => {
         return (
           <tr key={index}>
             <td style={{ textAlign: "left" }}>{index}</td>
