@@ -1,19 +1,19 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;600;700&display=swap");
 
 body {
   background-color: white;
-  font-family: "Prompt", sans-serif;
+  font-family: "Montserrat", sans-serif !important;
 }
 
-
-.text-m{
-  font-size: 18px;
-}
-
-
-
-.purple{
+.purple {
   color: #a06ffb;
   text-decoration: underline;
+  margin-bottom: 20px;
+}
+
+
+.git {
+  color: #3d3d3d;
+  text-decoration: none;
   margin-bottom: 20px;
 }

@@ -27,10 +27,10 @@ export default function SidePanel({
   };
 
   return (
-    <div class="col-sm-3 mb-2">
-      <h4 class="mb-3">Interval Fetch</h4>
-      <ul class="nav flex-column">
-        <div class="form-check">
+    <div className="col-sm-3 mb-2">
+      <h4 className="mb-3">Interval Fetch</h4>
+      <ul className="nav flex-column">
+        <div className="form-check">
           <input
             className="form-check-input"
             type="radio"
@@ -38,11 +38,11 @@ export default function SidePanel({
             checked={isRadioSelected("5")}
             onChange={(e) => _handleCheckboxChange(e)}
           />
-          <label class="form-check-label mb-3 purple" for="flexRadioDefault1">
+          <label className="form-check-label mb-3 purple">
             Every 5 seconds
           </label>
         </div>
-        <div class="form-check">
+        <div className="form-check">
           <input
             className="form-check-input"
             type="radio"
@@ -50,12 +50,12 @@ export default function SidePanel({
             checked={isRadioSelected("10")}
             onChange={(e) => _handleCheckboxChange(e)}
           />
-          <label class="form-check-label mb-3 purple" for="flexRadioDefault2">
+          <label className="form-check-label mb-3 purple">
             Every 10 seconds
           </label>
         </div>
 
-        <div class="form-check">
+        <div className="form-check">
           <input
             className="form-check-input"
             type="radio"
@@ -63,12 +63,11 @@ export default function SidePanel({
             checked={isRadioSelected("15")}
             onChange={(e) => _handleCheckboxChange(e)}
           />
-          <label class="form-check-label mb-3 purple" for="flexRadioDefault2">
+          <label className="form-check-label mb-3 purple">
             Every 15 seconds
           </label>
         </div>
 
-        <p>You have chosen: {radioBtnSelected}</p>
         {_renderSearchInput()}
       </ul>
     </div>

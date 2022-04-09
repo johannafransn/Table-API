@@ -38,22 +38,22 @@ export default function Pagination({
         <nav style={stylePosition}>
           <ul className="pagination">
             <li className="">
-              <a
+              <button
                 className="page-link"
                 style={styleDisableIfFirstPage}
                 onClick={() => paginate(1)}
               >
                 First
-              </a>
+              </button>
             </li>
             <li className="">
-              <a
+              <button
                 className="page-link"
                 style={styleDisableIfFirstPage}
                 onClick={() => paginate(currentPage - 1)}
               >
                 Previous
-              </a>
+              </button>
             </li>
 
             {pageNumbers.map((number) => (
@@ -63,32 +63,32 @@ export default function Pagination({
                   currentPage === number ? "page-item active" : "page-item"
                 }
               >
-                <a
+                <button
                   onClick={() => paginate(number)}
                   className="page-link active"
                 >
                   {number}
-                </a>
+                </button>
               </li>
             ))}
 
             <li key="next" className="">
-              <a
+              <button
                 className="page-link"
                 style={styleDisableIfLastPage}
                 onClick={() => paginate(currentPage + 1)}
               >
                 Next
-              </a>
+              </button>
             </li>
             <li className="">
-              <a
+              <button
                 className="page-link"
                 style={styleDisableIfLastPage}
                 onClick={() => paginate(pageNumbers.length)}
               >
                 Last
-              </a>
+              </button>
             </li>
           </ul>
         </nav>

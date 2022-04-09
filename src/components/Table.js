@@ -4,9 +4,7 @@ import Pagination from "./Pagination";
 export default function Table({ interval, searchText }) {
   const [apiData, setApiData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-
-  const [graphData, setGraphData] = useState([]);
+  const [rowsPerPage, setRowsPerPage] = useState(35);
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -14,11 +12,10 @@ export default function Table({ interval, searchText }) {
       //Use settimeout to create interval fetch
       //setTimeout(fetchGCD, interval * 1000);
       const liveUrl = "https://liquality.io/swap/agent/api/swap/marketinfo";
-      console.log(liveUrl, "Live url");
       const res = await fetch(liveUrl);
       const data = await res.json();
       //Sets the raw groundData
-      console.log(interval, "", data.length, "I REFETCHED!");
+      console.log(interval, data.length, "I REFETCHED!");
       setApiData(data);
     };
     fetchGCD();
@@ -48,24 +45,24 @@ export default function Table({ interval, searchText }) {
     setCurrentPage(page);
   };
 
-  //TODO: Add  pagination
   const _renderRows = () => {
     let filteredData = _searchObjectWithText(apiData);
     const indexOfLastPost = currentPage * rowsPerPage;
     const indexOfFirstPost = indexOfLastPost - rowsPerPage;
     const currentItems = filteredData.slice(indexOfFirstPost, indexOfLastPost);
-    console.log(
-      currentItems,
-      "<-- currentitems , --> currentpage",
-      currentPage
-    );
+
+    //If user searches, we need to iterate the full array with filtered data
+    //If no search just iterate and display the current page result
+    let arrayToIterate;
+    if (searchText.length > 0) {
+      arrayToIterate = filteredData;
+    } else arrayToIterate = currentItems;
 
     let rows = [];
     if (filteredData && filteredData.length > 0) {
-      rows = currentItems.map((item, index) => {
+      rows = arrayToIterate.map((item, index) => {
         return (
           <tr key={index}>
-            <td style={{ textAlign: "left" }}>{index}</td>
             <td>{item.from}</td>
             <td style={{ textAlign: "right" }}>{item.to}</td>
             <td style={{ textAlign: "right" }}>{item.updatedAt}</td>
@@ -84,29 +81,18 @@ export default function Table({ interval, searchText }) {
     return rows;
   };
 
-  const _renderTablePage = () => {
-    const indexOfLastPost = currentPage * rowsPerPage;
-    const indexOfFirstPost = indexOfLastPost - rowsPerPage;
-    const currentItems = apiData.slice(indexOfFirstPost, indexOfLastPost);
-  };
-  console.log("wat is data??", interval);
-
   return (
     <div>
-      <table class="table">
+      <table className="table">
         <thead>
           <tr>
-            <th style={{ textAlign: "left" }}>Number</th>
             <th>From</th>
             <th style={{ textAlign: "right" }}>To</th>
             <th style={{ textAlign: "right" }}>Updated</th>
             <th style={{ textAlign: "right" }}>Rate</th>
           </tr>
         </thead>
-        <tbody>
-          {_renderTablePage()}
-          {_renderRows()}
-        </tbody>
+        <tbody>{_renderRows()}</tbody>
       </table>
       <Pagination
         itemsPerPage={rowsPerPage}

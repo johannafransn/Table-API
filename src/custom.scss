@@ -1,37 +1,16 @@
-$green-dark:   #a06ffb;
-$green-light:   #cfe383;
-
+$green-dark: #a06ffb;
+$green-light: #cfe383;
 
 $theme-colors: (
   "primary": #a06ffb,
-  "danger": #aa0b02
+  "danger": #aa0b02,
 );
 
-
 .btn {
- /*    display: inline-block;
-    font-family: $btn-font-family;
-    font-weight: $btn-font-weight;
-    line-height: $btn-line-height; */
-    color: #fff !important;
-/*     text-align: center;
-    text-decoration: if($link-decoration == none, null, none);
-    white-space: $btn-white-space;
-    vertical-align: middle;
-    cursor: if($enable-button-pointers, pointer, null);
-    user-select: none;
-    background-color: transparent;
-    border: $btn-border-width solid transparent;
-    @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-border-radius);
-    @include transition($btn-transition); */
+  color: #fff !important;
 }
 
-$primary:       $green-dark;
+$primary: $green-dark;
 $btn-border-radius: 30px;
 
-
-$accordion-icon-width:                    1.875rem;
-$accordion-icon-color:                    $green-dark;
-$accordion-icon-active-color:             $green-light;
-
-@import '~bootstrap/scss/bootstrap.scss';
+@import "~bootstrap/scss/bootstrap.scss";

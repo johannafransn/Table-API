@@ -15,26 +15,25 @@ export default function Home({ propsHere }) {
   const _handleSearchText = (event) => {
     setSearchText(event.target.value);
   };
-  console.log(searchText, "USER SEARCH");
   return (
-    <div class="container">
-      <div class="row my-3 my-sm-5">
+    <div className="container">
+      <div className="row my-3 my-sm-5">
         <SidePanel
           _handleCheckboxChange={_handleCheckboxChange}
           radioBtnSelected={radioBtnSelected}
           _handleSearchText={_handleSearchText}
         ></SidePanel>
-        <div class="col-sm-9 article-content">
+        <div className="col-sm-9 article-content">
           <h1>Table API</h1>
 
-          <div id="ember41" class="ember-view">
+          <div id="ember41" className="ember-view">
             <p>
               Choose an interval to fetch new table API data every 5, 10 or 15
               seconds.
             </p>
             <p>
               If you want to learn more about this application see:{" "}
-              <a href="/about">About</a>
+              <a href="/#/about">About</a>
             </p>
 
             <Table interval={interval} searchText={searchText}></Table>
