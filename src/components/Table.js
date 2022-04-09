@@ -1,25 +1,56 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Pagination from "./Pagination";
+
+//Custom hook to create interval that is clearable
+function useInterval(callback, interval) {
+  const savedCallback = useRef();
+
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (interval !== null) {
+      let id = setInterval(tick, interval * 1000);
+      return () => clearInterval(id);
+    }
+  }, [interval]);
+}
 
 export default function Table({ interval, searchText }) {
   const [apiData, setApiData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(35);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
+  const [isRunning, setIsRunning] = useState(true);
 
+  const fetchApiData = async () => {
+    //You could also use setTimeout to create interval fetch (has drawbacks)
+    //setTimeout(fetchGCD, interval * 1000);
+    const liveUrl = "https://liquality.io/swap/agent/api/swap/marketinfo";
+    const res = await fetch(liveUrl);
+    const data = await res.json();
+    //Sets the raw groundData
+    console.log("Interval chosen:", interval, "REFETCH!", data.length);
+    setApiData(data);
+  };
+
+  //Fetch on mounting component
   useEffect(() => {
-    const fetchGCD = async () => {
-      //Use settimeout to create interval fetch
-      //setTimeout(fetchGCD, interval * 1000);
-      const liveUrl = "https://liquality.io/swap/agent/api/swap/marketinfo";
-      const res = await fetch(liveUrl);
-      const data = await res.json();
-      //Sets the raw groundData
-      console.log(interval, data.length, "I REFETCHED!");
-      setApiData(data);
-    };
-    fetchGCD();
-  }, [count]);
+    fetchApiData();
+  }, []);
+
+  //Fetch continously during the interval set
+  useInterval(
+    () => {
+      fetchApiData();
+      setCount(count + 1);
+    },
+    isRunning ? interval : null
+  );
 
   //This function filters the object based on user input text
   const _searchObjectWithText = (obj) => {
@@ -40,8 +71,8 @@ export default function Table({ interval, searchText }) {
     return filteredData;
   };
 
+  // Update state with new page of items
   const onChangePage = (page) => {
-    // update state with new page of items
     setCurrentPage(page);
   };
 
@@ -83,6 +114,17 @@ export default function Table({ interval, searchText }) {
 
   return (
     <div>
+      {apiData.length > 0 ? (
+        <div className="mb-4">
+          <strong>Fetch success!</strong> You have done{" "}
+          <strong className="alert-link purple">{count}</strong> fetch(es) to
+          the API so far.{" "}
+        </div>
+      ) : (
+        <div className="mb-4">
+          <strong>Fetch failure!</strong> Could not fetch any data from API
+        </div>
+      )}
       <table className="table">
         <thead>
           <tr>
